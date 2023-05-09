@@ -1,0 +1,142 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+/* 
+  ** Abbreviations **
+
+  lt: Light Theme
+  ltp: Light Theme Palette
+  
+  dt: Dark Theme
+  dtp: Dark Theme Palette
+*/
+
+/*
+************************************
+************************************
+        For Light Theme
+************************************
+************************************
+*/
+
+// Blue Palette
+$blue-palette-ltp: (
+  50: #e4f2ff,
+  100: #bfdfff,
+  200: #96ccff,
+  300: #6eb7ff,
+  400: #53a7ff,
+  500: #4198ff,
+  600: #408af1,
+  700: #3c77dd,
+  800: #3966ca,
+  900: #3246ab,
+  // A100: #c2e4ff,
+  // A200: #addcff,
+  // A400: #1f9eff,
+  // A700: #00518f,
+  contrast:
+    (
+      50: rgba(black, 0.87),
+      100: rgba(black, 0.87),
+      200: rgba(black, 0.87),
+      300: rgba(black, 0.87),
+      400: rgba(black, 0.87),
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: white,
+      // A100: rgba(black, 0.87),
+      // A200: rgba(black, 0.87),
+      // A400: white,
+      // A700: white,,,,,,,,,,
+    ),
+);
+
+// White-Gray Palette
+$white-gray-palette-ltp: (
+  50: #ffffff,
+  100: #fafafa,
+  200: #f5f5f5,
+  300: #f0f0f0,
+  400: #dedede,
+  500: #c2c2c2,
+  600: #979797,
+  700: #818181,
+  800: #606060,
+  900: #3c3c3c,
+  // A100: #c2e4ff,
+  // A200: #addcff,
+  // A400: #1f9eff,
+  // A700: #00518f,
+  contrast:
+    (
+      50: rgba(black, 0.87),
+      100: rgba(black, 0.87),
+      200: rgba(black, 0.87),
+      300: rgba(black, 0.87),
+      400: rgba(black, 0.87),
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: white,
+      // A100: rgba(black, 0.87),
+      // A200: rgba(black, 0.87),
+      // A400: rgba(black, 0.87),
+      // A700: white,,,,,,,,,,
+    ),
+);
+
+// Hue Values Order: default, lighter, darker, text-color
+
+$lt-primary: mat.define-palette($blue-palette-ltp, 700, 300, 900);
+$lt-accent: mat.define-palette($white-gray-palette-ltp, 300, 100, 500);
+$lt-warn: mat.define-palette(mat.$red-palette);
+
+// Define Light Theme
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $lt-primary,
+      accent: $lt-accent,
+      warn: $lt-warn,
+    ),
+  )
+);
+
+/*
+<====== Light Theme Ends Here ======>
+*/
+
+
+
+/*
+************************************
+************************************
+        For Dark Theme
+************************************
+************************************
+*/
+
+/*
+<====== Dark Theme Ends Here ======>
+*/
+
+
+
+/*
+************************************
+************************************
+        General Theme Settings
+************************************
+************************************
+*/
+
+@include mat.all-component-themes($light-theme);
+
+/*
+<====== General Theme Settings End Here ======>
+*/
