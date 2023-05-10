@@ -1,1 +1,35 @@
-<p>login works!</p>
+<!-- Login Form: Start -->
+<div class="d-flex justify-content-center pt-5">
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <div class="login-form px-2 py-4 rounded-1 mt-5">
+      <h3 class="h4 font-weight-normal text-center pb-4">Let's Get In</h3>
+
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          required
+          formControlName="email"
+          placeholder="Enter your email"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          required
+          formControlName="password"
+          placeholder="********"
+        />
+      </mat-form-field>
+
+      <button type="submit" class="w-100" mat-raised-button color="primary">
+        Sign In
+      </button>
+    </div>
+  </form>
+</div>
+<!-- Login Form: End -->
