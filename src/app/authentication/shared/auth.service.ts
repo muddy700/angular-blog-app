@@ -33,6 +33,38 @@ export class AuthService {
       .pipe(catchError(this.handleError));
   }
 
+  // Sign-in
+  signIn(payload: { identifier: string; password: string }) {
+    return this.http
+      .post<any>(`${this.baseUrl}/auth/local`, payload, {
+        headers: { skipAuth: 'true' },
+      })
+      .subscribe((res: any) => {
+        const { jwt, user } = res;
+        localStorage.setItem('access_token', jwt);
+
+        this.currentUser = user;
+        this.router.navigate(['']);
+      });
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('access_token');
+  }
+
+  get isLoggedIn(): boolean {
+    return this.getToken() !== null ? true : false;
+  }
+
+  // Logout
+  logOut(): void {
+    let removeToken = localStorage.removeItem('access_token');
+
+    if (removeToken == null) {
+      this.router.navigate(['login']);
+    }
+  }
+
   // Error Handling
   handleError(error: HttpErrorResponse) {
     let msg = '';
