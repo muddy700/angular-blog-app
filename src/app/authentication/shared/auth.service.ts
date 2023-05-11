@@ -41,15 +41,23 @@ export class AuthService {
       })
       .subscribe((res: any) => {
         const { jwt, user } = res;
-        localStorage.setItem('access_token', jwt);
+        this.setToken(jwt);
 
         this.currentUser = user;
         this.router.navigate(['']);
       });
   }
 
+  setToken(token: string): void {
+    if (token) localStorage.setItem('access_token', token);
+  }
+
   getToken(): string | null {
     return localStorage.getItem('access_token');
+  }
+
+  deleteToken(): void {
+    localStorage.removeItem('access_token');
   }
 
   get isLoggedIn(): boolean {
@@ -63,6 +71,16 @@ export class AuthService {
     if (removeToken == null) {
       this.router.navigate(['login']);
     }
+  }
+
+  // User profile
+  getUserProfile(): Observable<any> {
+    let userProfileApi = `${this.baseUrl}/users/me`;
+
+    return this.http.get(userProfileApi, { headers: this.headers }).pipe(
+      map((res: any) => res || {}),
+      catchError(this.handleError)
+    );
   }
 
   // Error Handling

@@ -1,10 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/authentication/shared/auth.service';
+import { HelpersService } from 'src/app/authentication/shared/helpers.service';
 
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
-  styleUrls: ['./view.component.css']
+  styleUrls: ['./view.component.css'],
 })
-export class ViewComponent {
+export class ViewComponent implements OnInit {
+  currentUser: any = {};
 
+  constructor(
+    public authService: AuthService,
+    public helpersService: HelpersService
+  ) {
+    this.authService.getUserProfile().subscribe((res: any) => {
+      this.currentUser = res;
+    });
+  }
+
+  ngOnInit() {}
 }

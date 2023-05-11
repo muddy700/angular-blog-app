@@ -13,6 +13,11 @@ const routes: Routes = [
         (_) => _.AuthenticationModule
       ),
   },
+  {
+    path: 'user-profile',
+    loadChildren: () =>
+      import('./profile/profile.module').then((_) => _.ProfileModule),
+  },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
