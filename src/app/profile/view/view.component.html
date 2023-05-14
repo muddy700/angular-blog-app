@@ -1,12 +1,66 @@
-<div class="row justify-content-center">
-  <div class="col-4">
-    <h1>User Profile Page</h1>
-    <p>
-      Name: ===>
-      <b>{{ this.helpersService.getUserFullName(this.currentUser) }}</b>
-    </p>
-    <p>
-      Email: ===> <b>{{ this.currentUser.email }}</b>
-    </p>
+<div class="row justify-content-center bg-secondary bg-opacity-25">
+  <div class="col-7 d-flex flex-column text-center justify-content-center pb-3">
+    <!-- Avatar -->
+    <img
+      src="{{ this.helpersService.getUserAvatar(this.currentUser) }}"
+      class="rounded-circle my-3 mx-auto"
+      style="width: 200px; height: 200px"
+      alt="User Profile Image"
+    />
+
+    <!-- Full Name -->
+    <span class="h4 text-uppercase mb-2">
+      {{ this.helpersService.getUserFullName(this.currentUser) }}
+    </span>
+
+    <!-- Other User Info -->
+
+    <!-- 1: First && Last Names -->
+    <div class="row py-3">
+      <div class="col d-flex flex-column">
+        <span class="h6">First Name</span>
+        <button mat-raised-button>
+          {{ this.currentUser.firstName ?? "--" }}
+        </button>
+      </div>
+      <div class="col d-flex flex-column">
+        <span class="h6">Last Name</span>
+        <button mat-raised-button>
+          {{ this.currentUser.lastName ?? "--" }}
+        </button>
+      </div>
+    </div>
+
+    <!-- 2: Email && Phone Number -->
+    <div class="row py-3">
+      <div class="col d-flex flex-column">
+        <span class="h6">Email</span>
+        <button mat-raised-button>
+          {{ this.currentUser.email ?? "--" }}
+        </button>
+      </div>
+      <div class="col d-flex flex-column">
+        <span class="h6">Phone Number</span>
+        <button mat-raised-button>
+          {{ this.currentUser.laphoneNumberstName ?? "--" }}
+        </button>
+      </div>
+    </div>
+
+    <!-- 3: Gender && Date Registered -->
+    <div class="row py-3">
+      <div class="col d-flex flex-column">
+        <span class="h6">Gender</span>
+        <button mat-raised-button>
+          {{ this.helpersService.getUserGender(this.currentUser.gender) }}
+        </button>
+      </div>
+      <div class="col d-flex flex-column">
+        <span class="h6">Registered</span>
+        <button mat-raised-button>
+          {{ this.currentUser.createdAt ?? "--" }}
+        </button>
+      </div>
+    </div>
   </div>
 </div>

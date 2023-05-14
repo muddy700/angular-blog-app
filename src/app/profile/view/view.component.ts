@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/authentication/shared/auth.service';
-import { HelpersService } from 'src/app/authentication/shared/helpers.service';
+import { AuthService } from 'src/app/shared/auth.service';
+import { HelpersService } from 'src/app/shared/helpers.service';
 
 @Component({
   selector: 'app-view',

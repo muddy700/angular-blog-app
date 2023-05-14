@@ -9,4 +9,5 @@ export interface User {
   gender?: string;
   confirmed?: boolean;
   blocked?: boolean;
+  avatarUrl?: string;
 }
