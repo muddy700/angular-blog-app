@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './authentication/shared/authconfig.interceptor';
+import { AuthInterceptor } from './shared/authconfig.interceptor';
 import { MaterialModule } from './material.module';
 
 @NgModule({
