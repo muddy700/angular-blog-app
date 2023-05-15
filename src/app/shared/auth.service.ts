@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { HelpersService } from './helpers.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +19,11 @@ export class AuthService {
     'application/json'
   );
 
-  constructor(private http: HttpClient, public router: Router) {}
+  constructor(
+    private http: HttpClient,
+    public router: Router,
+    public helpersService: HelpersService
+  ) {}
 
   // Sign-up
   signUp(payload: User): Observable<any> {
@@ -30,7 +31,7 @@ export class AuthService {
 
     return this.http
       .post(registrationApi, payload, { headers: { skipAuth: 'true' } })
-      .pipe(catchError(this.handleError));
+      .pipe(catchError(this.helpersService.handleError));
   }
 
   // Sign-in
@@ -77,22 +78,17 @@ export class AuthService {
 
     return this.http.get(userProfileApi, { headers: this.headers }).pipe(
       map((res: any) => res || {}),
-      catchError(this.handleError)
+      catchError(this.helpersService.handleError)
     );
   }
 
-  // Error Handling
-  handleError(error: HttpErrorResponse) {
-    let msg = '';
+  // User By Id
+  getUserById(userId: number): Observable<any> {
+    let usersApi = `${this.baseUrl}/users/${userId}`;
 
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      msg = error.error.message;
-    } else {
-      // server-side error
-      msg = `Error Code: ${error.status}\n Message: ${error.message}`;
-    }
-
-    return throwError(() => new Error(msg));
+    return this.http.get(usersApi, { headers: this.headers }).pipe(
+      map((res: any) => res || {}),
+      catchError(this.helpersService.handleError)
+    );
   }
 }

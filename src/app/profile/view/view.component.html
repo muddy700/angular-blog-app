@@ -15,9 +15,14 @@
 
     <!-- Edit Icon/Button -->
     <div class="row d-flex justify-content-end pe-2">
-      <button mat-icon-button color="primary" aria-label="Edit Icon">
+      <a
+        mat-icon-button
+        [routerLink]="['/user-profile', this.currentUser.id, 'edit']"
+        color="primary"
+        aria-label="Edit Icon"
+      >
         <mat-icon>edit</mat-icon>
-      </button>
+      </a>
     </div>
 
     <!-- Other User Info -->
@@ -42,7 +47,7 @@
       <div class="col d-flex flex-column">
         <span class="h6">Email</span>
         <button mat-raised-button>
-          {{ this.currentUser.email}}
+          {{ this.currentUser.email }}
         </button>
       </div>
       <div class="col d-flex flex-column">
