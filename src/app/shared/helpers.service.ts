@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
+import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +19,7 @@ export class HelpersService {
 
     return 'No user info';
   }
- 
+
   getUserAvatar(user: User): string {
     if (user.avatarUrl) return user.avatarUrl;
 
@@ -34,5 +36,20 @@ export class HelpersService {
     if (gender === 'F') return 'Female';
 
     return 'Unknown Gender';
+  }
+
+  // Error Handling
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\n Message: ${error.message}`;
+    }
+
+    return throwError(() => new Error(msg));
   }
 }

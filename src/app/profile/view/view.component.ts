@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/auth.service';
 import { HelpersService } from 'src/app/shared/helpers.service';
+import { User } from 'src/app/shared/user';
 
 @Component({
   selector: 'app-view',
@@ -8,7 +9,7 @@ import { HelpersService } from 'src/app/shared/helpers.service';
   styleUrls: ['./view.component.css'],
 })
 export class ViewComponent implements OnInit {
-  currentUser: any = {};
+  currentUser: User = {} as User;
 
   constructor(
     public authService: AuthService,

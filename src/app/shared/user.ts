@@ -1,4 +1,5 @@
 export interface User {
+  id?: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -10,4 +11,6 @@ export interface User {
   confirmed?: boolean;
   blocked?: boolean;
   avatarUrl?: string;
+  createdAt?: string;
+  upatedAt?: string;
 }
