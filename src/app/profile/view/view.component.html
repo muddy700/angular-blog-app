@@ -2,7 +2,7 @@
   <div class="col-7 d-flex flex-column text-center justify-content-center pb-3">
     <!-- Avatar -->
     <img
-      src="{{ this.helpersService.getUserAvatar(this.currentUser) }}"
+      src="{{ helpersService.getUserAvatar(currentUser) }}"
       class="rounded-circle my-3 mx-auto"
       style="width: 200px; height: 200px"
       alt="User Profile Image"
@@ -10,14 +10,14 @@
 
     <!-- Full Name -->
     <span class="h4 text-uppercase">
-      {{ this.helpersService.getUserFullName(this.currentUser) }}
+      {{ helpersService.getUserFullName(currentUser) }}
     </span>
 
     <!-- Edit Icon/Button -->
     <div class="row d-flex justify-content-end pe-2">
       <a
         mat-icon-button
-        [routerLink]="['/user-profile', this.currentUser.id, 'edit']"
+        [routerLink]="['/user-profile', currentUser.id, 'edit']"
         color="primary"
         aria-label="Edit Icon"
       >
@@ -31,13 +31,13 @@
       <div class="col d-flex flex-column">
         <span class="h6">First Name</span>
         <button mat-raised-button>
-          {{ this.currentUser.firstName }}
+          {{ currentUser.firstName }}
         </button>
       </div>
       <div class="col d-flex flex-column">
         <span class="h6">Last Name</span>
         <button mat-raised-button>
-          {{ this.currentUser.lastName }}
+          {{ currentUser.lastName }}
         </button>
       </div>
     </div>
@@ -47,13 +47,13 @@
       <div class="col d-flex flex-column">
         <span class="h6">Email</span>
         <button mat-raised-button>
-          {{ this.currentUser.email }}
+          {{ currentUser.email }}
         </button>
       </div>
       <div class="col d-flex flex-column">
         <span class="h6">Phone Number</span>
         <button mat-raised-button>
-          {{ this.currentUser.phoneNumber ?? "--" }}
+          {{ currentUser.phoneNumber ?? "--" }}
         </button>
       </div>
     </div>
@@ -63,13 +63,13 @@
       <div class="col d-flex flex-column">
         <span class="h6">Gender</span>
         <button mat-raised-button>
-          {{ this.helpersService.getUserGender(this.currentUser.gender) }}
+          {{ helpersService.getUserGender(currentUser.gender) }}
         </button>
       </div>
       <div class="col d-flex flex-column">
         <span class="h6">Registered</span>
         <button mat-raised-button>
-          {{ this.currentUser.createdAt ?? "--" }}
+          {{ currentUser.createdAt | date : "mediumDate" }}
         </button>
       </div>
     </div>
