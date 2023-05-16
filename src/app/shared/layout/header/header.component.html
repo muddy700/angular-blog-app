@@ -1,0 +1,43 @@
+<!-- Application Header: Start -->
+<div>
+  <mat-toolbar color="primary">
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <a routerLink="/" class="h5 ps-3 white-text"> Blog App </a>
+      <div class="d-flex align-items-center justify-content-between gap-3">
+        <a
+          *ngIf="!this.authService.isLoggedIn"
+          mat-flat-button
+          routerLink="/auth/register"
+        >
+          Register
+        </a>
+        <a
+          *ngIf="!this.authService.isLoggedIn"
+          mat-flat-button
+          routerLink="/auth/login"
+        >
+          Login
+        </a>
+        <button
+          *ngIf="this.authService.isLoggedIn"
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Profile And Logout Menu"
+        >
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item routerLink="/user-profile/me">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+          </a>
+          <button mat-menu-item (click)="doLogOut()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-toolbar>
+</div>
+<!-- Application Header: End -->
