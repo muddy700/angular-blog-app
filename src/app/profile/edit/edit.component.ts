@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth.service';
 import { HelpersService } from 'src/app/shared/helpers.service';
-import { User } from 'src/app/shared/user';
+import { User } from 'src/app/users/store/user';
 import { ProfileService } from '../profile.service';
 
 @Component({

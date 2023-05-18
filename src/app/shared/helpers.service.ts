@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
+import { User } from '../users/store/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 
