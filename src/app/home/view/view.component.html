@@ -1,5 +1,66 @@
-<div class="row w-100 mx-0 bg-secondary white-text text-center">
-  <div>
-    <p class="h4">This Is Home Page</p>
+<!-- Page Container: Start -->
+<div class="row w-100 mx-0 white-text text-center">
+  <!-- Post Categories: Start -->
+  <div class="d-flex justify-content-between px-0 text-primary text-opacity-75 pt-1">
+    <div *ngFor="let category of postCategories">
+      <span class="">{{ category.name }}</span>
+    </div>
   </div>
+  <!-- Post Categories: End -->
+
+  <!-- Blog Posts: Start -->
+  <div class="row row-cols-2 mx-0 px-0 py-3">
+    <div *ngFor="let post of blogPosts" class="px-3 pb-5">
+      <mat-card class="">
+        <!-- Post Cover Image: Start -->
+        <mat-card-header class="p-0">
+          <img
+            mat-card-image
+            src="{{ post.coverImage }}"
+            alt="Post image"
+            class="w-100 rounded-2"
+            style="height: 250px"
+          />
+        </mat-card-header>
+        <!-- Post Cover Image: End -->
+
+        <!-- Post Title: Start -->
+        <mat-card-content class="px-1 py-3">
+          <p class="h4 text-black text-start">
+            The smallest of the six original and distinct spitz breeds of dog
+            from Japan.
+          </p>
+        </mat-card-content>
+        <!-- Post Title: End -->
+
+        <!-- Post Footer: Start -->
+        <mat-card-footer
+          class="d-flex justify-content-between px-1 pb-2 text-black text-opacity-75"
+        >
+          <div class="d-flex">
+            <img
+              src="{{ post.author.avatarUrl }}"
+              class="rounded-circle"
+              style="width: 50px; height: 50px"
+              alt="Author Profile Image"
+            />
+            <div class="d-flex flex-column">
+              <span class="ps-2" style="font-size: 14px">
+                {{ helperService.getUserFullName(post.author) }}
+              </span>
+              <span style="font-size: 12px" class="fst-italic">
+                {{ post.createdAt | date : "mediumDate" }}
+              </span>
+            </div>
+          </div>
+          <div>
+            <span style="font-size: 14px">{{ post.category.name }}</span>
+          </div>
+        </mat-card-footer>
+        <!-- Post Footer: End -->
+      </mat-card>
+    </div>
+  </div>
+  <!-- Blog Posts: End -->
 </div>
+<!-- Page Container: End -->
