@@ -1,5 +1,5 @@
 import { User } from '../users/store/user';
-import { Category } from './category';
+import { Category } from '../categories/store/category';
 
 export interface Post {
   id: string;

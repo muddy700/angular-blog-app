@@ -13,9 +13,10 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent, HeaderComponent } from './shared';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { EntityDataModule } from '@ngrx/data';
+import { EntityDataModule, HttpUrlGenerator } from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CustomHttpUrlGenerator } from './shared/custom-http-url-generator';
 
 const rootRouting: ModuleWithProviders<any> = RouterModule.forRoot([], {
   useHash: true,
@@ -40,6 +41,10 @@ const rootRouting: ModuleWithProviders<any> = RouterModule.forRoot([], {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
+    },
+    {
+      provide: HttpUrlGenerator,
+      useClass: CustomHttpUrlGenerator,
     },
   ],
   bootstrap: [AppComponent],

@@ -5,7 +5,7 @@ import {
   Pluralizer,
 } from '@ngrx/data';
 @Injectable()
-export class CustomurlHttpGenerator extends DefaultHttpUrlGenerator {
+export class CustomHttpUrlGenerator extends DefaultHttpUrlGenerator {
   constructor(pluralizer: Pluralizer) {
     super(pluralizer);
   }
@@ -16,13 +16,27 @@ export class CustomurlHttpGenerator extends DefaultHttpUrlGenerator {
     trailingSlashEndpoints?: boolean
   ): HttpResourceUrls {
     let resourceURLs = this.knownHttpResourceUrls[entityName];
+
     if (entityName == 'User') {
       resourceURLs = {
         collectionResourceUrl: 'http://localhost:1337/api/users/',
         entityResourceUrl: 'http://localhost:1337/api/users/',
       };
+
       this.registerHttpResourceUrls({ [entityName]: resourceURLs });
     }
+
+    if (entityName == 'Category') {
+      resourceURLs = {
+        collectionResourceUrl: 'https://jsonplaceholder.typicode.com/posts/',
+        entityResourceUrl: 'https://jsonplaceholder.typicode.com/posts/',
+        // collectionResourceUrl: 'http://localhost:1337/api/categories/',
+        // entityResourceUrl: 'http://localhost:1337/api/categories/',
+      };
+
+      this.registerHttpResourceUrls({ [entityName]: resourceURLs });
+    }
+
     return resourceURLs;
   }
 }

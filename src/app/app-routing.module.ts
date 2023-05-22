@@ -20,6 +20,11 @@ const routes: Routes = [
       import('./profile/profile.module').then((_) => _.ProfileModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'categories',
+    loadChildren: () =>
+      import('./categories/categories.module').then((_) => _.CategoriesModule),
+  },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
