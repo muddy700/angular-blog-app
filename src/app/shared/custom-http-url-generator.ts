@@ -28,10 +28,8 @@ export class CustomHttpUrlGenerator extends DefaultHttpUrlGenerator {
 
     if (entityName == 'Category') {
       resourceURLs = {
-        collectionResourceUrl: 'https://jsonplaceholder.typicode.com/posts/',
-        entityResourceUrl: 'https://jsonplaceholder.typicode.com/posts/',
-        // collectionResourceUrl: 'http://localhost:1337/api/categories/',
-        // entityResourceUrl: 'http://localhost:1337/api/categories/',
+        collectionResourceUrl: 'http://localhost:1337/api/categories/',
+        entityResourceUrl: 'http://localhost:1337/api/categories/',
       };
 
       this.registerHttpResourceUrls({ [entityName]: resourceURLs });

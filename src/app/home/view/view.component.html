@@ -1,8 +1,10 @@
 <!-- Page Container: Start -->
 <div class="row w-100 mx-0 white-text text-center">
   <!-- Post Categories: Start -->
-  <div class="d-flex justify-content-between px-0 text-primary text-opacity-75 pt-1">
-    <div *ngFor="let category of postCategories">
+  <div
+    class="d-flex justify-content-between px-0 text-primary text-opacity-75 pt-1"
+  >
+    <div *ngFor="let category of allCategories$ | async">
       <span class="">{{ category.name }}</span>
     </div>
   </div>
@@ -46,7 +48,7 @@
             />
             <div class="d-flex flex-column">
               <span class="ps-2" style="font-size: 14px">
-                {{ helperService.getUserFullName(post.author) }}
+                {{ helpersService.getUserFullName(post.author) }}
               </span>
               <span style="font-size: 12px" class="fst-italic">
                 {{ post.createdAt | date : "mediumDate" }}

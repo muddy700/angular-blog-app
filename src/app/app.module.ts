@@ -13,10 +13,17 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent, HeaderComponent } from './shared';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { EntityDataModule, HttpUrlGenerator } from '@ngrx/data';
+import {
+  EntityDataModule,
+  EntityDataService,
+  EntityDefinitionService,
+  HttpUrlGenerator,
+} from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CustomHttpUrlGenerator } from './shared/custom-http-url-generator';
+import { AppEntityMetaData } from './shared/app-entity-metadata';
+import { CategoryDataService } from './categories/store/category-data-service';
 
 const rootRouting: ModuleWithProviders<any> = RouterModule.forRoot([], {
   useHash: true,
@@ -46,7 +53,17 @@ const rootRouting: ModuleWithProviders<any> = RouterModule.forRoot([], {
       provide: HttpUrlGenerator,
       useClass: CustomHttpUrlGenerator,
     },
+    CategoryDataService,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    entityDefinitionService: EntityDefinitionService,
+    categoryDataService: CategoryDataService,
+    entityDataService: EntityDataService
+  ) {
+    entityDefinitionService.registerMetadataMap(AppEntityMetaData);
+    entityDataService.registerService('Category', categoryDataService);
+  }
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CategoriesService } from 'src/app/categories/store/categories.service';
 import { Category } from 'src/app/categories/store/category';
 import { HelpersService } from 'src/app/shared/helpers.service';
 import { Post } from 'src/app/shared/post';
@@ -10,7 +12,14 @@ import { User } from 'src/app/users/store/user';
   styleUrls: ['./view.component.css'],
 })
 export class ViewComponent implements OnInit {
-  constructor(public helperService: HelpersService) {}
+  allCategories$: Observable<Category[]>;
+
+  constructor(
+    public helpersService: HelpersService,
+    public categoriesService: CategoriesService
+  ) {
+    this.allCategories$ = this.categoriesService.entities$;
+  }
 
   // Author Info
   authorInfo: User = {
@@ -83,5 +92,7 @@ export class ViewComponent implements OnInit {
     },
   ];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.categoriesService.getAll();
+  }
 }

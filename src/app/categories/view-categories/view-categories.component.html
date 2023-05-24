@@ -1,8 +1,9 @@
-<p>view-categories works!</p>
-<div
-  class="d-flex justify-content-between px-0 text-primary text-opacity-75 pt-1"
->
-  <div *ngFor="let category of allCategories$ | async">
-    <span class="px-2">{{ category.id }}</span>
+<h3>{{ this.categoriesService.appName() }}</h3>
+
+<p>works!</p>
+
+<div class="row">
+  <div *ngFor="let category of allCategories$ | async" class="col">
+    <span class="">{{ category.name }}</span>
   </div>
 </div>

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  EntityCollectionService,
-  EntityCollectionServiceFactory,
-} from '@ngrx/data';
 import { Observable } from 'rxjs';
 import { Category } from '../store/category';
+import { CategoriesService } from '../store/categories.service';
 
 @Component({
   selector: 'app-view-categories',
@@ -12,15 +9,15 @@ import { Category } from '../store/category';
   styleUrls: ['./view-categories.component.css'],
 })
 export class ViewCategoriesComponent implements OnInit {
-  categoryService: EntityCollectionService<Category>;
+  loading$: Observable<boolean>;
   allCategories$: Observable<Category[]>;
 
-  constructor(serviceFactory: EntityCollectionServiceFactory) {
-    this.categoryService = serviceFactory.create<Category>('Category');
-    this.allCategories$ = this.categoryService.entities$;
+  constructor(public categoriesService: CategoriesService) {
+    this.loading$ = this.categoriesService.loading$;
+    this.allCategories$ = this.categoriesService.entities$;
   }
 
   ngOnInit(): void {
-    this.categoryService.getAll();
+    this.categoriesService.getAll();
   }
 }
