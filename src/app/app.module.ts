@@ -24,6 +24,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CustomHttpUrlGenerator } from './shared/custom-http-url-generator';
 import { AppEntityMetaData } from './shared/app-entity-metadata';
 import { CategoryDataService } from './categories/store/category-data-service';
+import { PostDataService } from './posts/store/post-data-service';
 
 const rootRouting: ModuleWithProviders<any> = RouterModule.forRoot([], {
   useHash: true,
@@ -54,6 +55,7 @@ const rootRouting: ModuleWithProviders<any> = RouterModule.forRoot([], {
       useClass: CustomHttpUrlGenerator,
     },
     CategoryDataService,
+    PostDataService,
   ],
   bootstrap: [AppComponent],
 })
@@ -61,9 +63,14 @@ export class AppModule {
   constructor(
     entityDefinitionService: EntityDefinitionService,
     categoryDataService: CategoryDataService,
+    postDataService: PostDataService,
     entityDataService: EntityDataService
   ) {
     entityDefinitionService.registerMetadataMap(AppEntityMetaData);
-    entityDataService.registerService('Category', categoryDataService);
+
+    entityDataService.registerServices({
+      Category: categoryDataService,
+      Post: postDataService,
+    });
   }
 }

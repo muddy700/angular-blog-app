@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../users/store/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { DirtyResponseEntity } from './dirty-response-entity';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +37,12 @@ export class HelpersService {
     if (gender === 'F') return 'Female';
 
     return 'Unknown Gender';
+  }
+
+  mapEntityData(item: DirtyResponseEntity): object {
+    if (item.id) return { id: item.id, ...item.attributes };
+
+    return {};
   }
 
   // Error Handling

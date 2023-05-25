@@ -12,14 +12,14 @@
 
   <!-- Blog Posts: Start -->
   <div class="row row-cols-2 mx-0 px-0 py-3">
-    <div *ngFor="let post of blogPosts" class="px-3 pb-5">
+    <div *ngFor="let post of allPosts$ | async" class="px-3 pb-5">
       <mat-card class="">
         <!-- Post Cover Image: Start -->
         <mat-card-header class="p-0">
           <img
             mat-card-image
             src="{{ post.coverImage }}"
-            alt="Post image"
+            alt="Post Cover Image"
             class="w-100 rounded-2"
             style="height: 250px"
           />
@@ -28,10 +28,7 @@
 
         <!-- Post Title: Start -->
         <mat-card-content class="px-1 py-3">
-          <p class="h4 text-black text-start">
-            The smallest of the six original and distinct spitz breeds of dog
-            from Japan.
-          </p>
+          <p class="h4 text-black text-start">{{ post.title }}</p>
         </mat-card-content>
         <!-- Post Title: End -->
 
@@ -41,13 +38,13 @@
         >
           <div class="d-flex">
             <img
-              src="{{ post.author.avatarUrl }}"
+              src="{{ post.author.avatarUrl ?? '' }}"
               class="rounded-circle"
               style="width: 50px; height: 50px"
               alt="Author Profile Image"
             />
-            <div class="d-flex flex-column">
-              <span class="ps-2" style="font-size: 14px">
+            <div class="d-flex flex-column ps-2 text-start">
+              <span class="" style="font-size: 14px">
                 {{ helpersService.getUserFullName(post.author) }}
               </span>
               <span style="font-size: 12px" class="fst-italic">

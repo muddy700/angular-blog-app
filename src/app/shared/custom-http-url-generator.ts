@@ -35,6 +35,15 @@ export class CustomHttpUrlGenerator extends DefaultHttpUrlGenerator {
       this.registerHttpResourceUrls({ [entityName]: resourceURLs });
     }
 
+    if (entityName == 'Post') {
+      resourceURLs = {
+        collectionResourceUrl: 'http://localhost:1337/api/posts/',
+        entityResourceUrl: 'http://localhost:1337/api/posts/',
+      };
+
+      this.registerHttpResourceUrls({ [entityName]: resourceURLs });
+    }
+
     return resourceURLs;
   }
 }

@@ -1,6 +1,6 @@
 import { EntityMetadataMap } from '@ngrx/data';
 import { Category } from '../categories/store/category';
-import { Post } from './post';
+import { Post } from '../posts/store/post';
 
 export const AppEntityMetaData: EntityMetadataMap = {
   Category: {
