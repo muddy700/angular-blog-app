@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { User } from '../users/store/user';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -7,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HelpersService } from './helpers.service';
+import { User } from '../entities';
 
 @Injectable({
   providedIn: 'root',

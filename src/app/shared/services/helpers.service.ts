@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User } from '../users/store/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
-import { DirtyResponseEntity } from './dirty-response-entity';
+import { DirtyResponseEntity, User } from '../entities';
 
 @Injectable({
   providedIn: 'root',

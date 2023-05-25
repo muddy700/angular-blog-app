@@ -4,12 +4,10 @@ import { DefaultDataService, HttpUrlGenerator, QueryParams } from '@ngrx/data';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Post } from './post';
-import { User } from 'src/app/users/store/user';
+import { User } from 'src/app/shared/entities/user';
 import { HttpOptions } from '@ngrx/data/src/dataservices/interfaces';
-import { Category } from 'src/app/categories/store/category';
-import { HelpersService } from 'src/app/shared/helpers.service';
-import { DirtyResponseEntity } from 'src/app/shared/dirty-response-entity';
+import { HelpersService } from '../services';
+import { Category, DirtyResponseEntity, Post } from '../entities';
 
 @Injectable()
 export class PostDataService extends DefaultDataService<Post> {
@@ -21,7 +19,7 @@ export class PostDataService extends DefaultDataService<Post> {
     helpersService: HelpersService
   ) {
     super('Post', http, httpUrlGenerator);
-    
+
     this.helpersService = helpersService;
   }
 

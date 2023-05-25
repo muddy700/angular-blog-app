@@ -4,9 +4,8 @@ import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Category } from './category';
-import { HelpersService } from 'src/app/shared/helpers.service';
-import { DirtyResponseEntity } from 'src/app/shared/dirty-response-entity';
+import { Category, DirtyResponseEntity } from '../entities';
+import { HelpersService } from '../services';
 
 @Injectable()
 export class CategoryDataService extends DefaultDataService<Category> {

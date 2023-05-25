@@ -1,6 +1,7 @@
 import { EntityMetadataMap } from '@ngrx/data';
-import { Category } from '../categories/store/category';
-import { Post } from '../posts/store/post';
+import { Category } from './category';
+import { Post } from './post';
+import { User } from './user';
 
 export const AppEntityMetaData: EntityMetadataMap = {
   Category: {
@@ -8,5 +9,8 @@ export const AppEntityMetaData: EntityMetadataMap = {
   },
   Post: {
     selectId: (post: Post) => post.id,
+  },
+  User: {
+    selectId: (user: User) => user.id,
   },
 };

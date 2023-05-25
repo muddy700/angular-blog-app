@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CategoriesService } from 'src/app/categories/store/categories.service';
-import { Category } from 'src/app/categories/store/category';
-import { HelpersService } from 'src/app/shared/helpers.service';
-import { Post } from 'src/app/posts/store/post';
-import { PostsService } from 'src/app/posts/store/posts.service';
+import { CategoriesService } from 'src/app/shared/services/categories.service';
+import { Category } from 'src/app/shared/entities/category';
+import { HelpersService } from 'src/app/shared/services/helpers.service';
+import { Post } from 'src/app/shared/entities/post';
+import { PostsService } from 'src/app/shared/services/posts.service';
 
 @Component({
   selector: 'app-view',

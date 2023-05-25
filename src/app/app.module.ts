@@ -4,13 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './shared/authconfig.interceptor';
-import { MaterialModule } from './material.module';
 
 import { RouterModule } from '@angular/router';
-import { FooterComponent, HeaderComponent } from './shared';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {
@@ -19,12 +15,16 @@ import {
   EntityDefinitionService,
   HttpUrlGenerator,
 } from '@ngrx/data';
-import { entityConfig } from './entity-metadata';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { CustomHttpUrlGenerator } from './shared/custom-http-url-generator';
-import { AppEntityMetaData } from './shared/app-entity-metadata';
-import { CategoryDataService } from './categories/store/category-data-service';
-import { PostDataService } from './posts/store/post-data-service';
+import { FooterComponent, HeaderComponent } from './shared/layouts';
+import { AppEntityMetaData } from './shared/entities';
+import {
+  AuthInterceptor,
+  CustomHttpUrlGenerator,
+  MaterialModule,
+  entityConfig,
+} from './shared/configurations';
+import { CategoryDataService, PostDataService } from './shared/data-services';
 
 const rootRouting: ModuleWithProviders<any> = RouterModule.forRoot([], {
   useHash: true,

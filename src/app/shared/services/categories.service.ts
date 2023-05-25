@@ -3,15 +3,20 @@ import {
   EntityCollectionServiceBase,
   EntityCollectionServiceElementsFactory,
 } from '@ngrx/data';
-import { Post } from './post';
+import { Category } from '../entities';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PostsService extends EntityCollectionServiceBase<Post> {
+export class CategoriesService extends EntityCollectionServiceBase<Category> {
   constructor(elementsFactory: EntityCollectionServiceElementsFactory) {
-    super('Post', elementsFactory);
+    super('Category', elementsFactory);
   }
 
   //  Your codes here
+  appName(): string {
+    let appName: string = 'Blog App Frontend';
+
+    return appName;
+  }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth.service';
-import { HelpersService } from 'src/app/shared/helpers.service';
-import { User } from 'src/app/users/store/user';
-import { ProfileService } from '../profile.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { HelpersService } from 'src/app/shared/services/helpers.service';
+import { User } from 'src/app/shared/entities/user';
+import { ProfileService } from '../../shared/services/profile.service';
 
 @Component({
   selector: 'app-edit',
