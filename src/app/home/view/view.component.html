@@ -12,7 +12,12 @@
 
   <!-- Blog Posts: Start -->
   <div class="row row-cols-2 mx-0 px-0 py-3">
-    <div *ngFor="let post of allPosts$ | async" class="px-3 pb-5">
+    <a
+      class="mb-5"
+      style="text-decoration: none"
+      *ngFor="let post of allPosts$ | async"
+      [routerLink]="['/posts', post.id, 'details']"
+    >
       <mat-card class="">
         <!-- Post Cover Image: Start -->
         <mat-card-header class="p-0">
@@ -58,7 +63,7 @@
         </mat-card-footer>
         <!-- Post Footer: End -->
       </mat-card>
-    </div>
+    </a>
   </div>
   <!-- Blog Posts: End -->
 </div>

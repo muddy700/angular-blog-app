@@ -36,6 +36,15 @@ export class PostDataService extends DefaultDataService<Post> {
       );
   }
 
+  override getById(
+    key: string | number,
+    options?: HttpOptions | undefined
+  ): Observable<Post> {
+    return super
+      .getById(key + '/?populate=*')
+      .pipe(map((res: any) => this.mapPost(res.data)));
+  }
+
   private mapPost(dirtyPost: DirtyResponseEntity): Post {
     let post: Post = this.helpersService.mapEntityData(dirtyPost) as Post;
 
