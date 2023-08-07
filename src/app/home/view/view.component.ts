@@ -14,6 +14,7 @@ import { PostsService } from 'src/app/shared/services/posts.service';
 export class ViewComponent implements OnInit {
   allCategories$: Observable<Category[]>;
   allPosts$: Observable<Post[]>;
+  isFetchingCategories$: Observable<Boolean>;
 
   constructor(
     public categoriesService: CategoriesService,
@@ -22,10 +23,11 @@ export class ViewComponent implements OnInit {
   ) {
     this.allCategories$ = this.categoriesService.entities$;
     this.allPosts$ = this.postsService.entities$;
+    this.isFetchingCategories$ = this.categoriesService.loading$;
   }
 
   ngOnInit(): void {
     this.categoriesService.getAll();
-    this.postsService.getWithQuery('populate=*');
+    this.postsService.getWithQuery('');
   }
 }

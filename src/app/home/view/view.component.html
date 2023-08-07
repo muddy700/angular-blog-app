@@ -1,5 +1,16 @@
 <!-- Page Container: Start -->
-<div class="row w-100 mx-0 white-text text-center">
+<div class="row w-100 mx-0 text-center">
+  <ng-container *ngIf="isFetchingCategories$">
+    <!-- Loader: Start -->
+    <div
+      class="d-flex flex-column justify-content-center gap-3 mt-5 fst-italic"
+    >
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <span>Please Wait...</span>
+    </div>
+    <!-- Loader: End -->
+  </ng-container>
+
   <!-- Post Categories: Start -->
   <div
     class="d-flex justify-content-between px-0 text-primary text-opacity-75 pt-1"

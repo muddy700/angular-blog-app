@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { DirtyResponseEntity, User } from '../entities';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +43,12 @@ export class HelpersService {
     if (item.id) return { id: item.id, ...item.attributes };
 
     return {};
+  }
+
+  getImagePlaceholder(): string {
+    let imagePlaceholder = environment.imagePlaceholder;
+
+    return imagePlaceholder;
   }
 
   // Error Handling
