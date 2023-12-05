@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { DirtyResponseEntity, User } from '../entities';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,7 @@ export class HelpersService {
   getUserAvatar(user: User): string {
     if (user.avatarUrl) return user.avatarUrl;
 
-    let avatar = `https://ui-avatars.com/api/?background=3c77dd&size=200&bold=true&format=png&color=fff&name=${
+    let avatar: string = `https://ui-avatars.com/api/?background=3c77dd&size=200&bold=true&format=png&color=fff&name=${
       user.firstName ?? '--'
     }+${user.lastName ?? '--'}`;
 
@@ -42,6 +43,12 @@ export class HelpersService {
     if (item.id) return { id: item.id, ...item.attributes };
 
     return {};
+  }
+
+  getImagePlaceholder(): string {
+    let imagePlaceholder: string = environment.imagePlaceholder;
+
+    return imagePlaceholder;
   }
 
   // Error Handling

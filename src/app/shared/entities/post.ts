@@ -7,6 +7,6 @@ export interface Post {
   description: string;
   author: User;
   category: Category;
-  coverImage: string;
+  coverImage?: string;
   createdAt?: string | Date;
 }

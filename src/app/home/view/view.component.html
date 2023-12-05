@@ -1,14 +1,27 @@
 <!-- Page Container: Start -->
-<div class="row w-100 mx-0 white-text text-center">
-  <!-- Post Categories: Start -->
-  <div
-    class="d-flex justify-content-between px-0 text-primary text-opacity-75 pt-1"
-  >
-    <div *ngFor="let category of allCategories$ | async">
-      <span class="">{{ category.name }}</span>
+<div class="row w-100 mx-0 text-center">
+  <!-- Categories: Start -->
+  <ng-container *ngIf="isFetchingCategories$ | async; else CategoriesCard">
+    <!-- Loader: Start -->
+    <div
+      class="d-flex flex-column justify-content-center gap-3 mt-5 fst-italic"
+    >
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <span>Please Wait...</span>
     </div>
-  </div>
-  <!-- Post Categories: End -->
+    <!-- Loader: End -->
+  </ng-container>
+
+  <ng-template #CategoriesCard>
+    <div
+      class="d-flex justify-content-between px-0 text-primary text-opacity-75 pt-1"
+    >
+      <span *ngFor="let category of allCategories$ | async">
+        {{ category.name }}
+      </span>
+    </div>
+  </ng-template>
+  <!-- Categories: End -->
 
   <!-- Blog Posts: Start -->
   <div class="row row-cols-2 mx-0 px-0 py-3">
@@ -18,7 +31,7 @@
       *ngFor="let post of allPosts$ | async"
       [routerLink]="['/posts', post.id, 'details']"
     >
-      <mat-card class="">
+      <mat-card>
         <!-- Post Cover Image: Start -->
         <mat-card-header class="p-0">
           <img
@@ -42,12 +55,15 @@
           class="d-flex justify-content-between px-1 pb-2 text-black text-opacity-75"
         >
           <div class="d-flex">
+            <!-- Post Author -->
             <img
               src="{{ post.author.avatarUrl ?? '' }}"
               class="rounded-circle"
               style="width: 50px; height: 50px"
               alt="Author Profile Image"
             />
+
+            <!-- Other Post Info -->
             <div class="d-flex flex-column ps-2 text-start">
               <span class="" style="font-size: 14px">
                 {{ helpersService.getUserFullName(post.author) }}
@@ -57,6 +73,8 @@
               </span>
             </div>
           </div>
+
+          <!-- Post Category -->
           <div>
             <span style="font-size: 14px">{{ post.category.name }}</span>
           </div>
