@@ -4,7 +4,7 @@ import { ViewPostDetailsComponent } from './view-post-details/view-post-details.
 
 const routes: Routes = [
   {
-    path: ':postId/details',
+    path: ':postId/details/:authorId',
     component: ViewPostDetailsComponent,
   },
 ];

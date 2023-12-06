@@ -92,15 +92,34 @@
           <mat-card-title class="h6 pb-3">More from author...</mat-card-title>
         </mat-card-header>
         <mat-card-content class="d-flex flex-column gap-3">
-          <div
-            *ngFor="let post of authorPosts"
-            class="d-flex flex-column bg-secondary bg-opacity-25 px-2 py-1 rounded-1"
-          >
-            <a style="font-size: 14px"
-              >The standard Lorem Ipsum passage, used since the 1500s</a
+          <ng-container *ngIf="authorPosts.length; else PostCardsPlaceholder">
+            <div
+              *ngFor="let post of authorPosts"
+              class="post-card bg-secondary bg-opacity-25 px-2 py-1 rounded-1"
+              (click)="refreshPage()"
             >
-            <span style="font-size: 13px" class="fst-italic">#Education</span>
-          </div>
+              <a
+                [routerLink]="['/posts', post.id, 'details', post.author.id]"
+                class="d-flex flex-column text-black"
+                style="text-decoration: none"
+              >
+                <span style="font-size: 14px" class="post-title">
+                  {{ post.title }}</span
+                >
+                <span style="font-size: 12px" class="fst-italic text-end"
+                  >#{{ post.category.name }}</span
+                >
+              </a>
+            </div>
+          </ng-container>
+          <ng-template #PostCardsPlaceholder>
+            <div
+              class="bg-secondary bg-opacity-25 px-2 py-1 rounded-1"
+              style="font-size: 14px"
+            >
+              If author has more than one post, they will appear here.
+            </div>
+          </ng-template>
         </mat-card-content>
       </mat-card>
       <!-- Other Posts: End -->

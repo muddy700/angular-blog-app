@@ -28,7 +28,7 @@ export class PostDataService extends DefaultDataService<Post> {
     options?: HttpOptions | undefined
   ): Observable<Post[]> {
     return super
-      .getWithQuery(queryParams + 'populate=*')
+      .getWithQuery('populate=*' + queryParams)
       .pipe(
         map((res: any) =>
           res.data.map((item: DirtyResponseEntity) => this.mapPost(item))

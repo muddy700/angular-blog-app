@@ -65,4 +65,34 @@ export class HelpersService {
 
     return throwError(() => new Error(msg));
   }
+
+  /**
+   * Print data to the console
+   *
+   * @param data
+   * @param message
+   * @param clearConsole
+   */
+  log(data?: any, message?: string, clearConsole: boolean = true): void {
+    // Clear Conosle
+    if (clearConsole) console.clear();
+
+    // Console Title
+    console.log('<========== Attention ==========>');
+
+    // Execution
+    if (message && data) {
+      console.log(message, data);
+    } else if (message) console.log(message);
+    else if (data) console.log(data);
+    else console.log('=====> Nothing to Log.');
+  }
+
+  encodeData(payload: any): string {
+    return btoa(JSON.stringify(payload));
+  }
+
+  decodeData(payload: string): any {
+    return JSON.parse(atob(payload));
+  }
 }

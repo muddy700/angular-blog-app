@@ -29,7 +29,7 @@
       class="mb-5"
       style="text-decoration: none"
       *ngFor="let post of allPosts$ | async"
-      [routerLink]="['/posts', post.id, 'details']"
+      [routerLink]="['/posts', post.id, 'details', post.author.id]"
     >
       <mat-card>
         <!-- Post Cover Image: Start -->
