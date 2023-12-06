@@ -16,7 +16,12 @@
     <div
       class="d-flex justify-content-between px-0 text-primary text-opacity-75 pt-1"
     >
-      <span *ngFor="let category of allCategories$ | async">
+      <span
+        *ngFor="let category of allCategories$ | async"
+        class="category-card"
+        (click)="filterPostsByCategory(category.id)"
+        [ngClass]="{ 'fw-bold text-black': category.id === activeCategoryId }"
+      >
         {{ category.name }}
       </span>
     </div>
@@ -24,11 +29,14 @@
   <!-- Categories: End -->
 
   <!-- Blog Posts: Start -->
-  <div class="row row-cols-2 mx-0 px-0 py-3">
+  <div
+    class="row row-cols-2 mx-0 px-0 py-3"
+    *ngIf="(isFetchingPosts$ | async) === false"
+  >
     <a
       class="mb-5"
       style="text-decoration: none"
-      *ngFor="let post of allPosts$ | async"
+      *ngFor="let post of allPosts"
       [routerLink]="['/posts', post.id, 'details', post.author.id]"
     >
       <mat-card>
@@ -83,6 +91,8 @@
       </mat-card>
     </a>
   </div>
+  <!-- Todo: Add Post-UI placeholders while fetching posts -->
+  <span *ngIf="!allPosts.length" class="mb-5">No post found!</span>
   <!-- Blog Posts: End -->
 </div>
 <!-- Page Container: End -->
